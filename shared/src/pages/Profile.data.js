@@ -7,9 +7,7 @@ export default () => {
     // simulate data loading
     fetch(`https://jsonplaceholder.typicode.com/users/2/`).then(r => r.json())
   );
-  loadInfo(() =>
-    fetch(`https://jsonplaceholder.typicode.com/users/2/todos`).then(r => r.json())
-  );
+  loadInfo(() => fetch(`https://jsonplaceholder.typicode.com/users/2/todos`).then(r => r.json()));
   return {
     get user() {
       return user();
