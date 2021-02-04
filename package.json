@@ -1,7 +1,7 @@
 {
-  "name": "solid-ssr",
+  "name": "solid-ssr-workbench",
   "description": "Patches node to work with Solid's SSR",
-  "version": "0.23.10",
+  "version": "0.24.0",
   "author": "Ryan Carniato",
   "license": "MIT",
   "repository": {
@@ -14,23 +14,23 @@
     "build:ssg": "rollup -c ssg/rollup.config.js && node ssg/export.js",
     "start:ssg": "serve ssg/public -l 8080",
     "build:ssr": "rollup -c ssr/rollup.config.js",
-    "start:ssr": "node --conditions=server ssr/lib/index.js",
+    "start:ssr": "node ssr/lib/index.js",
     "build:stream": "rollup -c stream/rollup.config.js",
-    "start:stream": "node --conditions=server stream/lib/index.js"
+    "start:stream": "node stream/lib/index.js"
   },
   "dependencies": {
-    "solid-js": "0.23.10",
-    "solid-ssr": "^0.23.10",
-    "solid-app-router": "^0.0.19"
+    "solid-js": "0.24.0",
+    "solid-ssr": "^0.24.0",
+    "solid-app-router": "^0.0.21"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@rollup/plugin-babel": "5.2.1",
     "@rollup/plugin-commonjs": "17.0.0",
     "@rollup/plugin-json": "4.1.0",
-    "@rollup/plugin-node-resolve": "11.0.0",
+    "@rollup/plugin-node-resolve": "11.0.1",
     "@rollup/plugin-replace": "2.3.3",
-    "babel-preset-solid": "^0.23.8",
+    "babel-preset-solid": "^0.24.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",

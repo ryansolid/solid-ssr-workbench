@@ -4,7 +4,7 @@ import compression from "compression";
 import fetch from "node-fetch";
 import manifest from "./public/js/rmanifest.json"
 
-import { renderToNodeStream, generateHydrationScript } from "solid-js/web";
+import { renderToNodeStream } from "solid-js/web";
 import App from "../shared/src/App";
 
 const app = express();
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("*", (req, res) => {
   if (!manifest[req.url]) return res.status(404).send();
-  const stream = renderToNodeStream(() => <App url={req.url} />);
+  const { stream, script } = renderToNodeStream(() => <App url={req.url} />);
 
   const htmlStart = `<html lang="${lang}">
     <head>
@@ -26,9 +26,7 @@ app.get("*", (req, res) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="/styles.css" />
       ${manifest[req.url].map(m => `<link rel="modulepreload" href="${m.href}" />`).reverse()}
-      <script>${generateHydrationScript({
-        streaming: true
-      })}</script>
+      ${script}
       <script async type="module" src="/js/index.js"></script>
     </head>
     <body><div id="app">`;

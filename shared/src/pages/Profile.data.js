@@ -1,13 +1,11 @@
 import { createResource } from "solid-js";
 
+const fetcher = query => fetch(query).then(r => r.json());
+
 export default () => {
-  const [user, loadUser] = createResource(undefined, { name: "profile" }),
-    [info, loadInfo] = createResource([], { name: "profile_info" });
-  loadUser(() =>
-    // simulate data loading
-    fetch(`https://jsonplaceholder.typicode.com/users/2/`).then(r => r.json())
-  );
-  loadInfo(() => fetch(`https://jsonplaceholder.typicode.com/users/2/todos`).then(r => r.json()));
+  const [user] = createResource(`https://jsonplaceholder.typicode.com/users/2/`, fetcher),
+    [info] = createResource(`https://jsonplaceholder.typicode.com/users/2/todos`, fetcher, []);
+
   return {
     get user() {
       return user();

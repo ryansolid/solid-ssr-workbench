@@ -17,7 +17,7 @@ export default [
     ],
     preserveEntrySignatures: false,
     plugins: [
-      nodeResolve(),
+      nodeResolve({ exportConditions: ["solid"] }),
       babel({
         babelHelpers: "bundled",
         presets: [["solid", { generate: "dom", hydratable: true }]]
@@ -55,7 +55,7 @@ export default [
     ],
     external: ["solid-js", "solid-js/web", "node-fetch"],
     plugins: [
-      nodeResolve({ preferBuiltins: true }),
+      nodeResolve({ preferBuiltins: true, exportConditions: ["solid"] }),
       babel({
         babelHelpers: "bundled",
         presets: [["solid", { generate: "ssr", hydratable: true, async: true }]]
