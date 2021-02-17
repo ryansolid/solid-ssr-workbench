@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { renderToStringAsync } from "solid-js/web";
 import App from "../shared/src/App";
 
-import manifest from "./public/js/rmanifest.json"
+import manifest from "./public/js/rmanifest.json";
 const lang = "en";
 globalThis.fetch = fetch;
 
@@ -15,7 +15,10 @@ export default async req => {
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="/styles.css" />
-      ${manifest[req.url].map(m => `<link rel="modulepreload" href="${m.href}" />`).reverse()}
+      ${manifest[req.url]
+        .map(m => `<link rel="modulepreload" href="${m.href}" />`)
+        .reverse()
+        .join("")}
       ${script}
     </head>
     <body><div id="app">${html}</div></body>
