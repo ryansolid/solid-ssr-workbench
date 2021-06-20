@@ -1,7 +1,8 @@
+import { HydrationScript, NoHydration } from "solid-js/web";
 import { Link, Router, Route, useRouter } from "solid-app-router";
 import routes from "./routes";
 
-const App = ({ url, manifest = [] }) => {
+const App = ({ manifest = [] }) => {
   const router = useRouter();
   return (
     <html lang="en">
@@ -10,9 +11,12 @@ const App = ({ url, manifest = [] }) => {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles.css" />
-        {manifest
+        <NoHydration>{
+          manifest
           .map(m => <link rel="modulepreload" href={m.href} />)
-          .reverse()}
+          .reverse()
+        }</NoHydration>
+        <HydrationScript />
       </head>
       <body>
         <div id="app">

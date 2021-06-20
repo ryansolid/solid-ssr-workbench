@@ -7,5 +7,5 @@ globalThis.fetch = fetch;
 
 // entry point for server render
 export default req => {
-  return renderToStringAsync(() => <App url={req.url} manifext={manifest[req.url]} />);
+  return renderToStringAsync(() => <App url={req.url} manifest={manifest[req.url]} />);
 };
