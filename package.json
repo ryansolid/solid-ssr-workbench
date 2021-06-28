@@ -1,7 +1,7 @@
 {
   "name": "solid-ssr-workbench",
   "description": "Patches node to work with Solid's SSR",
-  "version": "0.24.0",
+  "version": "1.0.0",
   "author": "Ryan Carniato",
   "license": "MIT",
   "repository": {
@@ -19,9 +19,9 @@
     "start:stream": "node stream/lib/index.js"
   },
   "dependencies": {
-    "solid-app-router": "^0.0.46",
-    "solid-js": "1.0.0-rc.7",
-    "solid-ssr": "^1.0.0-rc.7"
+    "solid-app-router": "^0.0.50",
+    "solid-js": "1.0.0",
+    "solid-ssr": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -30,7 +30,7 @@
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "13.0.0",
     "@rollup/plugin-replace": "2.3.3",
-    "babel-preset-solid": "^1.0.0-rc.7",
+    "babel-preset-solid": "^1.0.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
