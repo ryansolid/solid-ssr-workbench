@@ -1,9 +1,11 @@
 import { HydrationScript, NoHydration } from "solid-js/web";
-import { Link, Router, Route, useRouter } from "solid-app-router";
+import { Link, Router, useIsRouting, useLocation, useRoutes } from "solid-app-router";
 import routes from "./routes";
 
 const App = ({ manifest = [] }) => {
-  const router = useRouter();
+  const location = useLocation();
+  const isRouting = useIsRouting();
+  const Routes = useRoutes(routes);
   return (
     <html lang="en">
       <head>
@@ -21,17 +23,17 @@ const App = ({ manifest = [] }) => {
       <body>
         <div id="app">
           <ul class="inline">
-            <li classList={{ selected: router.location === "/" }}>
+            <li classList={{ selected: location.pathname === "/" }}>
               <Link class="link" href="/">Home</Link>
             </li>
-            <li classList={{ selected: router.location === "/profile" }}>
+            <li classList={{ selected: location.pathname === "/profile" }}>
               <Link class="link" href="/profile">Profile</Link>
             </li>
-            <li classList={{ selected: router.location === "/settings" }}>
+            <li classList={{ selected: location.pathname === "/settings" }}>
               <Link class="link" href="/settings">Settings</Link>
             </li>
           </ul>
-          <div class="tab" classList={{ pending: router.pending }}>
+          <div class="tab" classList={{ pending: isRouting() }}>
             <Suspense
               fallback={
                 <span class="loader" style={"opacity: 0"}>
@@ -39,18 +41,18 @@ const App = ({ manifest = [] }) => {
                 </span>
               }
             >
-              <Route />
+              <Routes />
             </Suspense>
           </div>
         </div>
+        <script type="module" src="/js/index.js" async></script>
       </body>
-      <script type="module" src="/js/index.js" async></script>
     </html>
   );
 };
 
 export default props => (
-  <Router routes={routes} initialURL={props.url}>
+  <Router url={props.url}>
     <App url={props.url} manifest={props.manifest} />
   </Router>
 );

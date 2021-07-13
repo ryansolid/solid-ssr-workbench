@@ -17,7 +17,7 @@ export default [
     ],
     preserveEntrySignatures: false,
     plugins: [
-      nodeResolve({ exportConditions: ["solid"] }),
+      nodeResolve({ exportConditions: ["solid"], extensions: [".js", ".jsx", ".ts", ".tsx"] }),
       babel({
         babelHelpers: "bundled",
         presets: [["solid", { generate: "dom", hydratable: true }]]
@@ -62,7 +62,11 @@ export default [
       "node-fetch"
     ],
     plugins: [
-      nodeResolve({ preferBuiltins: true, exportConditions: ["solid"] }),
+      nodeResolve({
+        preferBuiltins: true,
+        exportConditions: ["solid"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
+      }),
       babel({
         babelHelpers: "bundled",
         presets: [["solid", { generate: "ssr", hydratable: true }]]
