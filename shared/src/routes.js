@@ -7,15 +7,15 @@ const Settings = lazy(() => import("./pages/Settings.js"));
 export default [
   {
     path: "",
-    element: Home,
+    component: Home,
   },
   {
     path: "profile",
-    element: Profile,
+    component: Profile,
     data: ProfileData
   },
   {
     path: "settings",
-    element: Settings
+    component: Settings
   }
 ];

@@ -19,7 +19,7 @@
     "start:stream": "node stream/lib/index.js"
   },
   "dependencies": {
-    "solid-app-router": "^0.1.0-alpha.0",
+    "solid-app-router": "^0.1.1",
     "solid-js": "1.0.2",
     "solid-ssr": "^1.0.1"
   },
