@@ -4,8 +4,14 @@ import compression from "compression";
 import fetch from "node-fetch";
 import manifest from "./public/js/rmanifest.json";
 
-import { pipeToNodeWritable } from "solid-js/web";
+import { renderToStream } from "solid-js/web";
 import App from "../shared/src/App";
+
+function preload(res, resources) {
+  res.setHeader("Link", resources.map((resource) =>
+    `<${resource.href}>; rel="preload"; as="script"; crossorigin=""`
+  ).join(","))
+}
 
 const app = express();
 const port = 8080;
@@ -16,7 +22,10 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("*", (req, res) => {
   if (!manifest[req.url]) return res.status(404).send();
-  pipeToNodeWritable(() => <App url={req.url} manifest={manifest[req.url]} />, res);
+  // preload(res, manifest[req.url]);
+  // res.setHeader('transfer-encoding', 'chunked')
+  // res.flushHeaders();
+  renderToStream(() => <App url={req.url} manifest={manifest[req.url]} />).pipe(res);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

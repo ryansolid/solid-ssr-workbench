@@ -1,7 +1,7 @@
-import { useData } from "solid-app-router";
+import { useRouteData } from "solid-app-router";
 
 const Profile = () => {
-  const { user, info } = useData();
+  const { user, info } = useRouteData();
   return (
     <>
       <h1>{user()?.name}'s Profile</h1>
