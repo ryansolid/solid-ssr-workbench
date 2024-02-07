@@ -6,5 +6,5 @@ export default () => {
   const [user] = createResource(`https://jsonplaceholder.typicode.com/users/2/`, fetcher),
     [info] = createResource(() => user() && `https://jsonplaceholder.typicode.com/users/2/todos`, fetcher);
 
-  return { user, info };
+  return { user: user, info: info };
 };
