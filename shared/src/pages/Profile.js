@@ -1,9 +1,7 @@
-
-import { createResource } from "solid-js";
-
 const Profile = (props) => {
 
   const { user, info } = props.data;
+
   return (
     <>
       <h1>{user()?.name}'s Profile</h1>
