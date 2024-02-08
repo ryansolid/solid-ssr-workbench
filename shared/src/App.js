@@ -1,8 +1,9 @@
-import { HydrationScript } from "solid-js/web";
+import { HydrationScript, isServer } from "solid-js/web";
 import { A, Router, useIsRouting, useLocation } from "@solidjs/router";
 import routes from "./routes";
 
 const App = (manifest) => (props) => {
+
   const location = useLocation();
   const isRouting = useIsRouting();
 
@@ -13,7 +14,7 @@ const App = (manifest) => (props) => {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles.css" />
-        {manifest.map(m => <A rel="modulepreload" href={m.href} />).reverse()}
+        {/*manifest.map(m => <A href={m.href} />).reverse()*/}
         <HydrationScript />
       </head>
       <body>
@@ -48,5 +49,5 @@ const App = (manifest) => (props) => {
 };
 
 export default props => {
-  return <Router root={App(props.manifest)} url={props.url}>{routes}</Router>
+  return <Router root={App(props.manifest)} url={isServer ? props.url : ""}>{routes}</Router>
 }
