@@ -62,7 +62,7 @@ export default [
       }),
       babel({
         babelHelpers: "bundled",
-        presets: [["solid", { generate: "ssr", hydratable: true, async: true }]]
+        presets: [["solid", { generate: "ssr", hydratable: true }]]
       }),
       json()
     ]

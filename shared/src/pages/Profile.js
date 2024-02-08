@@ -1,7 +1,7 @@
-import { useRouteData } from "solid-app-router";
+const Profile = (props) => {
 
-const Profile = () => {
-  const { user, info } = useRouteData();
+  const { user, info } = props.data;
+
   return (
     <>
       <h1>{user()?.name}'s Profile</h1>
